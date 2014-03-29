@@ -22,9 +22,10 @@ class AgileCRM
 
     def request(method, subject, data = {})
       path = "/core/php/api/#{subject}?id=#{api_key}"
+      email = data[:email] || data['email']
       case method
       when :get
-        path += "&email=#{data[:email]}"
+        path += "&email=#{email}"
         request = Net::HTTP::Get.new(path)
       when :post
         request = Net::HTTP::Post.new(path)
@@ -33,7 +34,7 @@ class AgileCRM
         request = Net::HTTP::Put.new(path)
         request.body = data.to_json
       when :delete
-        path += "&email=#{data[:email]}"
+        path += "&email=#{email}"
         request = Net::HTTP::Delete.new(path)
       else
         raise "Unknown method: #{method}"
@@ -44,12 +45,7 @@ class AgileCRM
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request["Content-Type"] = 'application/json'
       response = http.request(request)
-      case response
-      when Net::HTTPSuccess, Net::HTTPRedirection
-        JSON.parse(response.body)
-      else
-        response.value
-      end
+      JSON.parse(response.body)
     end
   end
 end
