@@ -1,4 +1,4 @@
-agilecrm-ruby-api
+Agile CRM Ruby API
 =================
 
-Ruby Client to Access Agile Functionality
+Ruby Client to Access Agile CRM Functionality
