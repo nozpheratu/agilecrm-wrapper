@@ -49,7 +49,7 @@ data = {
   ]
 }
 request = AgileCRM::Request.new(:post, "contacts", data)
-request.dispatch => {...}
+request.dispatch #=> {...}
 ```
 
 ## Contributing
