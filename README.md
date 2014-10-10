@@ -59,7 +59,7 @@ AgileCRM::Contact.delete(123)
 AgileCRM::Contact.find(123).destroy
 ```
 
-Presently **GET** operations return one or more `AgileCRM::Contact` objects. These are just `Hashie::Mash` objects with a few utility methods sprinkled on. You can access any of the Contact fields returned by AgileCRM's REST API, see [here](https://www.agilecrm.com/api/rest#contact-fields) for what that entails. Example:
+**GET** operations return one or more `AgileCRM::Contact` objects. These are just `Hashie::Mash` objects with a few utility methods sprinkled on. You can access any of the Contact fields returned by AgileCRM's REST API, see [here](https://www.agilecrm.com/api/rest#contact-fields) for what that entails. Example:
 ```ruby
 contact = AgileCRM::Contact.find(123)
 contact.tags #=> ["tag", "your", "it"]
