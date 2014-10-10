@@ -1,9 +1,9 @@
-Agilecrm
+AgileCRM Ruby Client
 =================
 
-This is a ruby gem that wraps the Agile CRM API. This project is a fork of [Agile CRM Ruby API](https://github.com/anthonyfranco/agilecrm-ruby-api)!
+This project is a ruby client that wraps the [AgileCRM REST API](https://www.agilecrm.com/api/rest). **Note: This is not an official project, you're welcome to use it but don't expect the AgileCRM team to support it.**
 
-At present, the only supported operations are are **GET**, and **POST** requests on the **contacts** resource. That means you can retrieve a list of contacts and create a new contact with whatever fields you want. This api is very early in development, but it will slowly evolve to support other kinds of operations on Agile CRM. Pull requests are always welcome.
+At present, the only supported operations are are **GET**, and **POST** related operations on the **contacts** resource. That means you can retrieve a list of contacts and create a new contact with whatever fields you want. This client is early in development, but it will slowly evolve to support other kinds of operations. Pull requests are always welcome.
 
 ## Installation
 
@@ -14,7 +14,6 @@ Add this line to your application's Gemfile:
 And then execute:
 
     $ bundle
-
 
 # Usage
 
@@ -28,29 +27,47 @@ AgileCRM.configure do |config|
 end
 ```
 
-#### 1. Working with Contacts
+### 1. Working with Contacts
+Only the following Contact operations are supported. Methods not listed here either have issues on AgileCRM's side or are being worked on.
 
-######  To retrieve a list of contacts
-
+###### To retrieve a list of contacts
 ```ruby
-request = AgileCRM::Request.new(:get, "contacts")
-request.dispatch #=> [...]
+AgileCRM::Contact.all
+```
+
+###### To get an individual contact by ID
+```ruby
+AgileCRM::Contact.find(123)
 ```
 
 ###### To create a new contact
-
 ```ruby
-data = {
-  tags: ["lead"],
-  properties: [
-    { type: "SYSTEM", name: "first_name", value: "Luke" },
-    { type: "SYSTEM", name: "last_name",  value: "Warm" },
-    { type: "SYSTEM", name: "email", subtype: "work", value: "lukewarm@example.com" }
-  ]
-}
-request = AgileCRM::Request.new(:post, "contacts", data)
-request.dispatch => {...}
+AgileCRM::Contact.create(
+  tags: ["tag", "your", "it"],
+  first_name: "Justin",
+  last_name: "Case",
+  email: "blah@mail.com",
+  my_custom_field: "im a custom field!"
+)
 ```
+
+###### To delete a single contact
+```ruby
+# perform operation directly
+AgileCRM::Contact.delete(123)
+# or
+AgileCRM::Contact.find(123).destroy
+```
+
+Presently **GET** operations return one or more `AgileCRM::Contact` objects. These are just `Hashie::Mash` objects with a few utility methods sprinkled on. You can access any of the Contact fields returned by AgileCRM's REST API, see [here](https://www.agilecrm.com/api/rest#contact-fields) for what that entails. Example:
+```ruby
+contact = AgileCRM::Contact.find(123)
+contact.tags #=> ["tag", "your", "it"]
+contact.id #=> 123
+contact.properties #=> [{ type: 'SYSTEM', name: "email", value: "blah@mail.com" }]
+```
+
+The aforementioned utility methods presently only includes the `destroy` method, which when called on a Contact instance will fire off an HTTP **DELETE** request to the corresponding contact.
 
 ## Contributing
 
