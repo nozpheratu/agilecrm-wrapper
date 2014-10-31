@@ -74,7 +74,7 @@ contact = AgileCRM::Contact.find(123)
 contact.update(first_name: "Foo", last_name: "Bar", tags: ["new_tag"])
 ```
 
-Note, tags specified in `update` will simply be added to the existing list of tags.\
+Note, tags specified in `update` will simply be added to the existing list of tags.
 
 ###### To delete a single contact
 ```ruby
