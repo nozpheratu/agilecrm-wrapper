@@ -2,13 +2,9 @@ require 'hashie'
 require 'agilecrm/error'
 
 module AgileCRM
-  def request(method, data)
-    super(method, 'contacts', data)
-  end
-
   class Contact < Hashie::Mash
-    SYSTEM_PROPERTIES = %w(first_name, last_name, company, title, email)
-    CONTACT_FIELDS = %w(id, type, tags, lead_score, star_value)
+    SYSTEM_PROPERTIES = %w(first_name last_name company title email)
+    CONTACT_FIELDS = %w(id type tags lead_score star_value)
 
     class << self
       def all
@@ -91,8 +87,8 @@ module AgileCRM
       payload = self.class.parse_contact_fields(options)
       payload['properties'] = merge_properties(payload['properties'])
       merge!(payload)
-      request(:put, self)
-      self
+      response = AgileCRM.connection.put('contacts', self)
+      merge!(response.body)
     end
 
     private
