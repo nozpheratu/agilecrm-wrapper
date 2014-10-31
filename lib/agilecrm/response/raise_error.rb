@@ -5,6 +5,7 @@ module AgileCRM
   module Response
     class RaiseError < Faraday::Response::Middleware
       private
+
       def on_complete(response)
         status_code = response.status.to_i
         klass = AgileCRM::Error.errors[status_code]
@@ -15,4 +16,6 @@ module AgileCRM
   end
 end
 
-Faraday::Response.register_middleware :agilecrm_error => AgileCRM::Response::RaiseError
+Faraday::Response.register_middleware(
+  agilecrm_error: AgileCRM::Response::RaiseError
+)

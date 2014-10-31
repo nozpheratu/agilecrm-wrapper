@@ -63,7 +63,7 @@ module AgileCRM
     end
   end
 
-  # Raised when Twitter returns a 5xx HTTP status code
+  # Raised when AgileCRM returns a 5xx HTTP status code
   class ServerError < Error; end
 
   # Raised when AgileCRM returns a 500 HTTP status code

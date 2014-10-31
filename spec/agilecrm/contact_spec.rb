@@ -5,7 +5,7 @@ describe AgileCRM::Contact do
   describe '.all' do
     subject { AgileCRM::Contact.all }
 
-    it "should return an array of Contacts" do
+    it 'should return an array of Contacts' do
       expect(subject.map(&:class).uniq).to eq([AgileCRM::Contact])
     end
   end
@@ -17,24 +17,58 @@ describe AgileCRM::Contact do
     context 'given an existing contact ID' do
       it { should be_kind_of(AgileCRM::Contact) }
 
-      its(:id) { should eq 123 }
+      its(:id) { should eq id }
     end
 
     context 'given an unknown contact ID' do
       let(:id) { 0 }
-      it { expect{ is_expected.to raise_error(AgileCRM::NotFound) } }
+      it { expect { is_expected.to raise_error(AgileCRM::NotFound) } }
+    end
+  end
+
+  describe '.search_by_email' do
+    let(:email) { 'anitadrink@example.com' }
+    subject { AgileCRM::Contact.search_by_email(email) }
+
+    context 'given an existing email' do
+      it 'should return a contact with the corresponding email' do
+        expect(
+          subject.properties.select { |a| a.name == 'email' }.first.value
+        ).to eq email
+      end
+    end
+
+    context 'given an non-existing email' do
+      let(:email) { 'idontexist@example.com' }
+
+      it 'should return an empty array' do
+        expect(subject).to eq nil
+      end
     end
   end
 
   describe '.create' do
-    subject {
+    subject do
       AgileCRM::Contact.create(
-        tags: ['sales', 'rspec'], first_name: 'Anita',
-        last_name: 'Drink', email: 'anitadrink@example.com', custom_field: 'Im a custom field!'
+        tags: %w(sales, rspec), first_name: 'Anita',
+        last_name: 'Drink', email: 'anitadrink@example.com',
+        custom_field: 'Im a custom field!'
       )
-    }
+    end
 
     its(:status) { should eq 201 }
+  end
+
+  describe '#update' do
+    let(:contact) { AgileCRM::Contact.find(123) }
+
+    it 'updates the receiving contact with the supplied key-value pair(s)' do
+      expect do
+        contact.update(first_name: 'Foo!')
+      end.to change{
+        contact.properties.select { |a| a.type = 'first_name' }.first.value
+      }.from('Anita').to('Foo!')
+    end
   end
 
   describe '.delete' do

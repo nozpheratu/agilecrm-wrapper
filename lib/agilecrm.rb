@@ -1,5 +1,6 @@
 require 'faraday'
 require 'faraday_middleware'
+require 'json'
 require 'agilecrm/version'
 require 'agilecrm/configuration'
 require 'agilecrm/contact'
@@ -25,9 +26,16 @@ module AgileCRM
       "https://#{configuration.domain}.agilecrm.com/dev/api"
     end
 
+    def request(request_method, resource, data)
+      unless [:post, :delete, :get, :put].include? request_method
+        fail(ArgumentError.new("Unknown request method: #{request_method}"))
+      end
+      m = AgileCRM.connection.method request_method
+      m.call(resource, data.to_json)
+    end
+
     def connection
       @connection ||= default_connection
-      return @connection
     end
 
     def default_connection

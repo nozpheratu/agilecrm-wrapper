@@ -1,10 +1,11 @@
 PATH
   remote: .
   specs:
-    agilecrm (1.0.0)
+    agilecrm (1.1.0)
       faraday
       faraday_middleware
       hashie
+      json
 
 GEM
   remote: https://rubygems.org/
@@ -23,6 +24,7 @@ GEM
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     hashie (3.3.1)
+    json (1.8.1)
     method_source (0.8.2)
     multipart-post (2.0.0)
     parser (2.2.0.pre.5)

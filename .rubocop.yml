@@ -3,3 +3,7 @@ Style/Documentation:
 
 Style/RaiseArgs:
   Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 15
