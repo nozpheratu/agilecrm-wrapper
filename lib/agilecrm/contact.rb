@@ -17,9 +17,9 @@ module AgileCRM
       end
 
       def find(id)
-        response = AgileCRM.connection.get "contacts/#{id}"
+        response = AgileCRM.connection.get("contacts/#{id}")
         if response.status == 200
-          new response.body
+          new(response.body)
         elsif response.status == 204
           fail(AgileCRM::NotFound.new(response))
         end
@@ -41,11 +41,11 @@ module AgileCRM
 
       def create(options = {})
         payload = parse_contact_fields(options)
-        AgileCRM.connection.post 'contacts', payload
+        AgileCRM.connection.post('contacts', payload)
       end
 
       def delete(arg)
-        AgileCRM.connection.delete "contacts/#{arg}"
+        AgileCRM.connection.delete("contacts/#{arg}")
       end
 
       def parse_contact_fields(options)

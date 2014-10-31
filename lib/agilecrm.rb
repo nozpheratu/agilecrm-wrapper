@@ -35,11 +35,11 @@ module AgileCRM
         headers: { 'Accept' => 'application/json' }
       }
       Faraday.new(endpoint, options) do |conn|
-        conn.request :json
-        conn.request :basic_auth, configuration.email, configuration.api_key
-        conn.response :json, content_type: /\bjson$/
-        conn.response :agilecrm_error
-        conn.adapter Faraday.default_adapter
+        conn.request(:json)
+        conn.request(:basic_auth, configuration.email, configuration.api_key)
+        conn.response(:json, content_type: /\bjson$/)
+        conn.response(:agilecrm_error)
+        conn.adapter(Faraday.default_adapter)
       end
     end
   end
