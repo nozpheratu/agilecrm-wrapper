@@ -91,6 +91,12 @@ module AgileCRM
       merge!(response.body)
     end
 
+    def get_property(property_name)
+      return unless respond_to?(:properties)
+      prop = properties.select { |a| a['name'] == property_name.to_s }
+      OpenStruct.new(*prop).value
+    end
+
     private
 
     def merge_properties(new_properties)

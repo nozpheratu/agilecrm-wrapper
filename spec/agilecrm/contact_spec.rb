@@ -26,6 +26,14 @@ describe AgileCRM::Contact do
     end
   end
 
+  describe '.delete' do
+    context 'given a single ID' do
+      subject { AgileCRM::Contact.delete(123) }
+
+      its(:status) { should eq 204 }
+    end
+  end
+
   describe '.search_by_email' do
     let(:email) { 'anitadrink@example.com' }
     subject { AgileCRM::Contact.search_by_email(email) }
@@ -71,11 +79,19 @@ describe AgileCRM::Contact do
     end
   end
 
-  describe '.delete' do
-    context 'given a single ID' do
-      subject { AgileCRM::Contact.delete(123) }
+  describe '#get_property' do
+    let(:contact) { AgileCRM::Contact.find(123) }
 
-      its(:status) { should eq 204 }
+    context 'supplied an existing property name' do
+      it 'returns the value' do
+        expect(contact.get_property('email')).to_not be_nil
+      end
+    end
+
+    context 'supplied a non-existing property name' do
+      it 'returns nil' do
+        expect(contact.get_property('nil-propety')).to be_nil
+      end
     end
   end
 

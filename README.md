@@ -32,8 +32,8 @@ end
 **GET** operations return one or more `AgileCRM::Contact` objects. These are just `Hashie::Mash` objects with a few utility methods sprinkled on. You can access any of the Contact fields returned by AgileCRM's REST API, see [here](https://www.agilecrm.com/api/rest#contact-fields) for what that entails. Example:
 ```ruby
 contact = AgileCRM::Contact.find(123)
-contact.tags #=> ["tag", "your", "it"]
-contact.id #=> 123
+contact.tags       #=> ["tag", "your", "it"]
+contact.id         #=> 123
 contact.properties #=> [{ type: 'SYSTEM', name: "email", value: "blah@mail.com" }]
 ```
 
@@ -56,7 +56,6 @@ contacts = AgileCRM::Contact.search_by_email(
 )
 ```
 
-
 ###### To create a new contact
 ```ruby
 AgileCRM::Contact.create(
@@ -70,7 +69,6 @@ AgileCRM::Contact.create(
 
 ###### To update a single contact
 ```ruby
-contact = AgileCRM::Contact.find(123)
 contact.update(first_name: "Foo", last_name: "Bar", tags: ["new_tag"])
 ```
 
@@ -84,7 +82,12 @@ AgileCRM::Contact.delete(123)
 AgileCRM::Contact.find(123).destroy
 ```
 
-
+###### Convenient access to properties hash values
+```ruby
+contact.get_property("email")            #=> "blah@mail.com"
+contact.get_propety("my_custom_field")   #=> "im a custom field!"
+contact.get_property("unkown_attribute") #=> nil
+```
 
 ## Contributing
 
