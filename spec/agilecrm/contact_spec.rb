@@ -40,9 +40,7 @@ describe AgileCRM::Contact do
 
     context 'given an existing email' do
       it 'should return a contact with the corresponding email' do
-        expect(
-          subject.properties.select { |a| a.name == 'email' }.first.value
-        ).to eq email
+        expect(subject.get_property('email')).to eq email
       end
     end
 
@@ -74,7 +72,7 @@ describe AgileCRM::Contact do
       expect do
         contact.update(first_name: 'Foo!')
       end.to change{
-        contact.properties.select { |a| a.type = 'first_name' }.first.value
+        contact.get_property('first_name')
       }.from('Anita').to('Foo!')
     end
   end
