@@ -1,0 +1,52 @@
+{
+  "id": 80001,
+  "created_time": 1360561958,
+  "subject": "Note subject",
+  "description": "Note description",
+  "contacts": [{
+  "id": 123,
+  "type": "PERSON",
+  "created_time": 1412704793,
+  "updated_time": 0,
+  "viewed_time": 0,
+  "viewed": {
+    "viewed_time": 0
+  },
+  "star_value": 0,
+  "lead_score": 0,
+  "tags": ["sales", "rspec"],
+  "tagsWithTime": [{
+    "tag": "sales",
+    "createdTime": 1412704793874,
+    "availableCount": 0,
+    "entity_type": "tag"
+  }, {
+    "tag": "rspec",
+    "createdTime": 1412704793874,
+    "availableCount": 0,
+    "entity_type": "tag"
+  }],
+  "properties": [{
+    "type": "SYSTEM",
+    "name": "first_name",
+    "value": "Anita"
+  }, {
+    "type": "SYSTEM",
+    "name": "last_name",
+    "value": "Drink"
+  }, {
+    "type": "SYSTEM",
+    "name": "email",
+    "value": "anitadrink@example.com"
+  }, {
+    "type": "CUSTOM",
+    "name": "custom_field",
+    "value": "Im a custom field!"
+  }],
+  "campaignStatus": [],
+  "entity_type": "contact_entity",
+  "unsubscribeStatus": [],
+  "emailBounceStatus": []
+}],
+  "entity_type": "note"
+}

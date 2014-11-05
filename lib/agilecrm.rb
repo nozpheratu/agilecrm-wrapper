@@ -4,6 +4,7 @@ require 'json'
 require 'agilecrm/version'
 require 'agilecrm/configuration'
 require 'agilecrm/contact'
+require 'agilecrm/note'
 require 'agilecrm/response/raise_error'
 
 module AgileCRM

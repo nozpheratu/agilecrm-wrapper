@@ -89,6 +89,27 @@ contact.get_propety("my_custom_field")   #=> "im a custom field!"
 contact.get_property("unkown_attribute") #=> nil
 ```
 
+### 2. Working with Notes
+
+###### To create a new note
+```ruby
+AgileCRM::Note.create(
+  subject: "My Note",
+  description: "My notes's description.",
+  contact_ids: ["123"]
+)
+```
+
+###### To add a Note to a Contact using Email-ID
+```ruby
+AgileCRM::Note.add_by_email(
+  email: "blah@mail.com",
+  subject: "My Note",
+  description: "My notes's description."
+)
+```
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/nozpheratu/agilecrm-ruby-api/fork )

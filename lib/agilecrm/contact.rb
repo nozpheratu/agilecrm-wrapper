@@ -1,5 +1,5 @@
-require 'hashie'
 require 'agilecrm/error'
+require 'hashie'
 
 module AgileCRM
   class Contact < Hashie::Mash
@@ -8,7 +8,7 @@ module AgileCRM
 
     class << self
       def all
-        response = AgileCRM.connection.get 'contacts'
+        response = AgileCRM.connection.get('contacts')
         if response.status == 200
           return response.body.map { |body| new body }
         else
@@ -81,6 +81,11 @@ module AgileCRM
 
     def destroy
       self.class.delete(id)
+    end
+
+    def notes
+      response = AgileCRM.connection.get("contacts/#{id}/notes")
+      response.body.map { |note| AgileCRM::Note.new(note) }
     end
 
     def update(options = {})

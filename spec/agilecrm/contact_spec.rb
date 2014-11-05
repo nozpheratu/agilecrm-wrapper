@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe AgileCRM::Contact do
+  let(:contact) { AgileCRM::Contact.find(123) }
 
   describe '.all' do
     subject { AgileCRM::Contact.all }
@@ -65,8 +66,13 @@ describe AgileCRM::Contact do
     its(:status) { should eq 201 }
   end
 
+  describe '#notes' do
+    it 'returns the associated notes' do
+      expect(contact.notes.map(&:class).uniq).to eq [AgileCRM::Note]
+    end
+  end
+
   describe '#update' do
-    let(:contact) { AgileCRM::Contact.find(123) }
 
     it 'updates the receiving contact with the supplied key-value pair(s)' do
       expect do
