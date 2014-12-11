@@ -1,13 +1,13 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'json'
-require 'agilecrm/version'
-require 'agilecrm/configuration'
-require 'agilecrm/contact'
-require 'agilecrm/note'
-require 'agilecrm/response/raise_error'
+require 'agilecrm-wrapper/version'
+require 'agilecrm-wrapper/configuration'
+require 'agilecrm-wrapper/contact'
+require 'agilecrm-wrapper/note'
+require 'agilecrm-wrapper/response/raise_error'
 
-module AgileCRM
+module AgileCRMWrapper
   class << self
     attr_accessor :configuration
 

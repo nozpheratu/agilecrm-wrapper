@@ -1,35 +1,35 @@
 require 'spec_helper'
 
-describe AgileCRM::Contact do
-  let(:contact) { AgileCRM::Contact.find(123) }
+describe AgileCRMWrapper::Contact do
+  let(:contact) { AgileCRMWrapper::Contact.find(123) }
 
   describe '.all' do
-    subject { AgileCRM::Contact.all }
+    subject { AgileCRMWrapper::Contact.all }
 
     it 'should return an array of Contacts' do
-      expect(subject.map(&:class).uniq).to eq([AgileCRM::Contact])
+      expect(subject.map(&:class).uniq).to eq([AgileCRMWrapper::Contact])
     end
   end
 
   describe '.find' do
     let(:id) { 123 }
-    subject { AgileCRM::Contact.find(id) }
+    subject { AgileCRMWrapper::Contact.find(id) }
 
     context 'given an existing contact ID' do
-      it { should be_kind_of(AgileCRM::Contact) }
+      it { should be_kind_of(AgileCRMWrapper::Contact) }
 
       its(:id) { should eq id }
     end
 
     context 'given an unknown contact ID' do
       let(:id) { 0 }
-      it { expect { is_expected.to raise_error(AgileCRM::NotFound) } }
+      it { expect { is_expected.to raise_error(AgileCRMWrapper::NotFound) } }
     end
   end
 
   describe '.delete' do
     context 'given a single ID' do
-      subject { AgileCRM::Contact.delete(123) }
+      subject { AgileCRMWrapper::Contact.delete(123) }
 
       its(:status) { should eq 204 }
     end
@@ -37,7 +37,7 @@ describe AgileCRM::Contact do
 
   describe '.search_by_email' do
     let(:email) { 'anitadrink@example.com' }
-    subject { AgileCRM::Contact.search_by_email(email) }
+    subject { AgileCRMWrapper::Contact.search_by_email(email) }
 
     context 'given an existing email' do
       it 'should return a contact with the corresponding email' do
@@ -56,7 +56,7 @@ describe AgileCRM::Contact do
 
   describe '.create' do
     subject do
-      AgileCRM::Contact.create(
+      AgileCRMWrapper::Contact.create(
         tags: %w(sales, rspec), first_name: 'Anita',
         last_name: 'Drink', email: 'anitadrink@example.com',
         custom_field: 'Im a custom field!'
@@ -68,7 +68,7 @@ describe AgileCRM::Contact do
 
   describe '#notes' do
     it 'returns the associated notes' do
-      expect(contact.notes.map(&:class).uniq).to eq [AgileCRM::Note]
+      expect(contact.notes.map(&:class).uniq).to eq [AgileCRMWrapper::Note]
     end
   end
 
@@ -84,7 +84,7 @@ describe AgileCRM::Contact do
   end
 
   describe '#get_property' do
-    let(:contact) { AgileCRM::Contact.find(123) }
+    let(:contact) { AgileCRMWrapper::Contact.find(123) }
 
     context 'supplied an existing property name' do
       it 'returns the value' do
@@ -100,7 +100,7 @@ describe AgileCRM::Contact do
   end
 
   describe '#destroy' do
-    let(:contact) { AgileCRM::Contact.find(123) }
+    let(:contact) { AgileCRMWrapper::Contact.find(123) }
     subject { contact.destroy }
 
     its(:status) { should eq 204 }

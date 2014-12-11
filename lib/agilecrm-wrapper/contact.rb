@@ -1,14 +1,14 @@
-require 'agilecrm/error'
+require 'agilecrm-wrapper/error'
 require 'hashie'
 
-module AgileCRM
+module AgileCRMWrapper
   class Contact < Hashie::Mash
     SYSTEM_PROPERTIES = %w(first_name last_name company title email)
     CONTACT_FIELDS = %w(id type tags lead_score star_value)
 
     class << self
       def all
-        response = AgileCRM.connection.get('contacts')
+        response = AgileCRMWrapper.connection.get('contacts')
         if response.status == 200
           return response.body.map { |body| new body }
         else
@@ -17,17 +17,17 @@ module AgileCRM
       end
 
       def find(id)
-        response = AgileCRM.connection.get("contacts/#{id}")
+        response = AgileCRMWrapper.connection.get("contacts/#{id}")
         if response.status == 200
           new(response.body)
         elsif response.status == 204
-          fail(AgileCRM::NotFound.new(response))
+          fail(AgileCRMWrapper::NotFound.new(response))
         end
       end
 
       def search_by_email(*emails)
         emails = emails.flatten.compact.uniq
-        response = AgileCRM.connection.post(
+        response = AgileCRMWrapper.connection.post(
           'contacts/search/email', "email_ids=#{emails}",
           'content-type' => 'application/x-www-form-urlencoded'
         )
@@ -41,11 +41,11 @@ module AgileCRM
 
       def create(options = {})
         payload = parse_contact_fields(options)
-        AgileCRM.connection.post('contacts', payload)
+        AgileCRMWrapper.connection.post('contacts', payload)
       end
 
       def delete(arg)
-        AgileCRM.connection.delete("contacts/#{arg}")
+        AgileCRMWrapper.connection.delete("contacts/#{arg}")
       end
 
       def parse_contact_fields(options)
@@ -84,15 +84,15 @@ module AgileCRM
     end
 
     def notes
-      response = AgileCRM.connection.get("contacts/#{id}/notes")
-      response.body.map { |note| AgileCRM::Note.new(note) }
+      response = AgileCRMWrapper.connection.get("contacts/#{id}/notes")
+      response.body.map { |note| AgileCRMWrapper::Note.new(note) }
     end
 
     def update(options = {})
       payload = self.class.parse_contact_fields(options)
       payload['properties'] = merge_properties(payload['properties'])
       merge!(payload)
-      response = AgileCRM.connection.put('contacts', self)
+      response = AgileCRMWrapper.connection.put('contacts', self)
       merge!(response.body)
     end
 

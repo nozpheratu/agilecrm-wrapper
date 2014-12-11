@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'agilecrm/version'
+require 'agilecrm-wrapper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'agilecrm'
-  spec.version       = AgileCRM::VERSION
+  spec.name          = 'agilecrm-wrapper'
+  spec.version       = AgileCRMWrapper::VERSION
   spec.authors       = ['Cyle']
   spec.email         = ['cylehunter33@gmail.com']
-  spec.summary       = 'Ruby Client to Access Agile CRM Functionality.'
-  spec.description   = 'Ruby Client to Access Agile CRM Functionality.'
-  spec.homepage      = 'https://github.com/nozpheratu/agilecrm-ruby-api'
+  spec.summary       = 'Ruby wrapper for Agile CRM API.'
+  spec.description   = 'Ruby wrapper for Agile CRM API.'
+  spec.homepage      = 'https://github.com/nozpheratu/agilecrm-wrapper'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")

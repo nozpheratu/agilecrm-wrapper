@@ -1,7 +1,7 @@
-require 'agilecrm/error'
+require 'agilecrm-wrapper/error'
 require 'hashie'
 
-module AgileCRM
+module AgileCRMWrapper
   class Note < Hashie::Mash
     class << self
       def create(*contacts, subject: '', description: '')
@@ -11,7 +11,7 @@ module AgileCRM
           'description' => description,
           'contact_ids' => contacts
         }
-        response = AgileCRM.connection.post('notes', payload)
+        response = AgileCRMWrapper.connection.post('notes', payload)
         new(response.body)
       end
 
@@ -21,7 +21,7 @@ module AgileCRM
           'description' => description
         }
         query = "email=#{email}&note=#{payload.to_json}"
-        AgileCRM.connection.post(
+        AgileCRMWrapper.connection.post(
           'contacts/email/note/add', query,
           'content-type' => 'application/x-www-form-urlencoded'
         )

@@ -1,4 +1,4 @@
-module AgileCRM
+module AgileCRMWrapper
   class Configuration
     attr_accessor :domain, :api_key, :email
 

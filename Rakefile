@@ -6,5 +6,5 @@ RSpec::Core::RakeTask.new(:spec)
 task default: :spec
 
 task :console do
-  exec 'pry -r agilecrm -I ./lib'
+  exec 'pry -r agilecrm-wrapper -I ./lib'
 end

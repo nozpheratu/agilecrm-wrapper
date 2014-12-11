@@ -1,4 +1,4 @@
-require 'agilecrm'
+require 'agilecrm-wrapper'
 require 'pry'
 require 'webmock/rspec'
 require 'json'
