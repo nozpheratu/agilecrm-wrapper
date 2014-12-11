@@ -3,7 +3,7 @@ AgileCRMWrapper
 
 This project is a ruby client that wraps the [AgileCRM REST API](https://www.agilecrm.com/api/rest). **Note: This is not an official project, you're welcome to use it but don't expect the AgileCRM team to support it.**
 
-At present, only operations related to the **contacts** and **notes** resources are supported. Need something added? Make a feature request in the issues tab. Pull requests are always welcome.
+At present, only operations related to the **contact** and **note** resources are supported. Need something added? Make a feature request in the issues tab. Pull requests are always welcome.
 
 ## Installation
 
