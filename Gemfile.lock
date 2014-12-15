@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     agilecrm-wrapper (1.0.0)
-      faraday
+      faraday (~> 0.9)
       faraday_middleware
       hashie
       json
