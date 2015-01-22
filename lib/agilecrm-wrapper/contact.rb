@@ -40,7 +40,6 @@ module AgileCRMWrapper
       end
 
       def create(options = {})
-        contact = nil
         payload = parse_contact_fields(options)
         response = AgileCRMWrapper.connection.post('contacts', payload)
         if response && response.status == 200
