@@ -37,6 +37,14 @@
     "type": "CUSTOM",
     "name": "custom_field",
     "value": "Im a custom field!"
+  }, {
+    "type": "CUSTOM",
+    "name": "phone_number",
+    "value": "1231111111"
+  }, {
+    "type": "CUSTOM",
+    "name": "phone_number",
+    "value": "1232222222"
   }],
   "campaignStatus": [],
   "entity_type": "contact_entity",

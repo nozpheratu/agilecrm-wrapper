@@ -97,6 +97,12 @@ describe AgileCRMWrapper::Contact do
         expect(contact.get_property('nil-propety')).to be_nil
       end
     end
+
+    context 'two properties share the same name' do
+      it 'returns an array' do
+        expect(contact.get_property('phone_number').class).to eq(Array)
+      end
+    end
   end
 
   describe '#destroy' do

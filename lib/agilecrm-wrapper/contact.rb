@@ -102,8 +102,12 @@ module AgileCRMWrapper
 
     def get_property(property_name)
       return unless respond_to?(:properties)
-      prop = properties.select { |a| a['name'] == property_name.to_s }
-      OpenStruct.new(*prop).value
+      arr = properties.select { |a| a['name'] == property_name.to_s }
+      if arr.length > 1
+        arr.map {|i| i['value'] }
+      else
+        arr.first['value'] if arr.first
+      end
     end
 
     private
