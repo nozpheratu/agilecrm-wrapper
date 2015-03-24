@@ -63,7 +63,7 @@ describe AgileCRMWrapper::Contact do
       )
     end
 
-    its(:status) { should eq 201 }
+    its(:class) { should eq AgileCRMWrapper::Contact }
   end
 
   describe '#notes' do

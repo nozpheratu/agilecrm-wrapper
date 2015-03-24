@@ -31,7 +31,7 @@ class FakeAgileCRM < Sinatra::Base
   end
 
   post '/dev/api/contacts' do
-    json_response 201, 'contacts', 'create_contact'
+    json_response 200, 'contacts', 'create_contact'
   end
 
   post '/dev/api/contacts/bulk/tags' do

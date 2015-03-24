@@ -45,7 +45,6 @@ module AgileCRMWrapper
         if response && response.status == 200
           contact = new(response.body)
         end
-
         contact
       end
 
