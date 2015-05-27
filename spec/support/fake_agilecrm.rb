@@ -46,6 +46,10 @@ class FakeAgileCRM < Sinatra::Base
     status 204
   end
 
+  get '/dev/api/tags' do
+    json_response 200, 'tags', 'list_tags'
+  end
+
   private
 
   def json_response(response_code, resource, file_name)

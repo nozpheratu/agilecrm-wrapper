@@ -5,6 +5,7 @@ require 'agilecrm-wrapper/version'
 require 'agilecrm-wrapper/configuration'
 require 'agilecrm-wrapper/contact'
 require 'agilecrm-wrapper/note'
+require 'agilecrm-wrapper/tag'
 require 'agilecrm-wrapper/response/raise_error'
 
 module AgileCRMWrapper
