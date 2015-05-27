@@ -109,6 +109,12 @@ AgileCRMWrapper::Note.add_by_email(
 )
 ```
 
+### 3. Working with Tags
+
+##### List all tags
+```ruby
+AgileCRMWrapper::Tag.all #=> [...]
+```
 
 ## Contributing
 
