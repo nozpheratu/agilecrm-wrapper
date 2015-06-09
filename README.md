@@ -84,9 +84,9 @@ AgileCRMWrapper::Contact.find(123).destroy
 
 ###### Convenient access to properties hash values
 ```ruby
-contact.get_property("email")            #=> "blah@mail.com"
-contact.get_propety("my_custom_field")   #=> "im a custom field!"
-contact.get_property("unkown_attribute") #=> nil
+contact.get_property("email")             #=> "blah@mail.com"
+contact.get_property("my_custom_field")   #=> "im a custom field!"
+contact.get_property("unkown_attribute")  #=> nil
 ```
 
 ### 2. Working with Notes
@@ -111,7 +111,7 @@ AgileCRMWrapper::Note.add_by_email(
 
 ### 3. Working with Tags
 
-##### List all tags
+###### List all tags
 ```ruby
 AgileCRMWrapper::Tag.all #=> [...]
 ```
