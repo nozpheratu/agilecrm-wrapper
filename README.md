@@ -74,6 +74,11 @@ contact.update(first_name: "Foo", last_name: "Bar", tags: ["new_tag"])
 
 Note, tags specified in `update` will simply be added to the existing list of tags.
 
+###### To remove tags from a contact
+```ruby
+contact.delete_tags(['foo', 'bar'])
+```
+
 ###### To delete a single contact
 ```ruby
 # perform operation directly

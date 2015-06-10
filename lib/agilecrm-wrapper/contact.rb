@@ -87,6 +87,15 @@ module AgileCRMWrapper
       self.class.delete(id)
     end
 
+    def delete_tags(tags)
+      email = get_property('email')
+      response = AgileCRMWrapper.connection.post(
+        'contacts/email/tags/delete', "email=#{email}&tags=#{tags}",
+        'content-type' => 'application/x-www-form-urlencoded'
+      )
+      self.tags = self.tags - tags if response.status == 204
+    end
+
     def notes
       response = AgileCRMWrapper.connection.get("contacts/#{id}/notes")
       response.body.map { |note| AgileCRMWrapper::Note.new(note) }

@@ -35,6 +35,14 @@ describe AgileCRMWrapper::Contact do
     end
   end
 
+  describe '#delete_tags' do
+    it 'removes the tags' do
+      expect(
+        contact.delete_tags(contact.tags)
+      ).to eq []
+    end
+  end
+
   describe '.search_by_email' do
     let(:email) { 'anitadrink@example.com' }
     subject { AgileCRMWrapper::Contact.search_by_email(email) }
