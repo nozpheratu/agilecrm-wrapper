@@ -56,6 +56,11 @@ contacts = AgileCRMWrapper::Contact.search_by_email(
 )
 ```
 
+###### To find contacts by any field
+```ruby
+contacts = AgileCRMWrapper::Contact.search("foo")
+```
+
 ###### To create a new contact
 ```ruby
 AgileCRMWrapper::Contact.create(

@@ -62,6 +62,15 @@ describe AgileCRMWrapper::Contact do
     end
   end
 
+  describe '.search' do
+    let(:name) { 'Anita' }
+    subject { AgileCRMWrapper::Contact.search(name) }
+
+    it 'should return a contact by matching any field' do
+      expect(subject[0].get_property('user_name')).to eq name
+    end
+  end
+
   describe '.create' do
     subject do
       AgileCRMWrapper::Contact.create(

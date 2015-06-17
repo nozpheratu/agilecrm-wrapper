@@ -39,6 +39,17 @@ module AgileCRMWrapper
         end
       end
 
+      def search(query, type="PERSON", page_size=10)
+        response = AgileCRMWrapper.connection.get(
+          "search?q=#{query}&type=#{type}&page_size=#{page_size}"
+        )
+        if response.status == 200
+          return response.body.map { |body| new body }
+        else
+          return response
+        end
+      end
+
       def create(options = {})
         payload = parse_contact_fields(options)
         response = AgileCRMWrapper.connection.post('contacts', payload)

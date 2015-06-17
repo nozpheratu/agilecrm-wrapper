@@ -26,6 +26,10 @@ class FakeAgileCRM < Sinatra::Base
     end
   end
 
+  get '/dev/api/search' do
+    json_response 200, 'contacts', 'search'
+  end
+
   post '/dev/api/notes' do
     json_response 200, 'notes', 'create_note'
   end
