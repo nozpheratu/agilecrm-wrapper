@@ -78,11 +78,8 @@ module AgileCRMWrapper
       private
 
       def parse_property(key, value)
-        if system_propety?(key)
-          { 'type' => 'SYSTEM', 'name' => key.to_s, 'value' => value }
-        else
-          { 'type' => 'CUSTOM', 'name' => key.to_s, 'value' => value }
-        end
+        type = system_propety?(key) ? 'SYSTEM' : 'CUSTOM'
+        { 'type' => type, 'name' => key.to_s, 'value' => value }
       end
 
       def system_propety?(key)
