@@ -3,7 +3,7 @@ require 'hashie'
 
 module AgileCRMWrapper
   class Contact < Hashie::Mash
-    SYSTEM_PROPERTIES = %w(first_name last_name company title email)
+    SYSTEM_PROPERTIES = %w(first_name last_name company title email address phone)
     CONTACT_FIELDS = %w(id type tags lead_score star_value)
 
     class << self
