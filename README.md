@@ -1,5 +1,6 @@
 AgileCRMWrapper
 =================
+[![Build Status](https://travis-ci.org/nozpheratu/agilecrm-wrapper.svg?branch=master)](https://travis-ci.org/nozpheratu/agilecrm-wrapper)
 
 This project is a ruby client that wraps the [AgileCRM REST API](https://www.agilecrm.com/api/rest). **Note: This is not an official project, you're welcome to use it but don't expect the AgileCRM team to support it.**
 
