@@ -58,6 +58,14 @@ class FakeAgileCRM < Sinatra::Base
     json_response 200, 'tags', 'list_tags'
   end
 
+  post '/dev/api/contacts/change-owner' do
+    if params['owner_email'] == 'new_owner@example.com'
+      json_response 200, 'contacts', 'change_owner'
+    else
+      json_response 200, 'contacts', 'change_owner_not_found'
+    end
+  end
+
   private
 
   def json_response(response_code, resource, file_name)
