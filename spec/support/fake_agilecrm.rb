@@ -46,8 +46,8 @@ class FakeAgileCRM < Sinatra::Base
     json_response 200, 'contacts', 'updated_contact'
   end
 
-  post '/dev/api/contacts/email/tags/delete' do
-    status 204
+  put '/dev/api/contacts/delete/tags' do
+    json_response 200, 'contacts', 'delete_tags'
   end
 
   delete '/dev/api/contacts/:id' do
