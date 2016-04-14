@@ -127,6 +127,23 @@ module AgileCRMWrapper
       end
     end
 
+    # Change contact owner
+    # https://github.com/agilecrm/rest-api#117-change-contact-owner
+    def change_owner(owner_email)
+      response = AgileCRMWrapper.connection.post(
+        'contacts/change-owner', "owner_email=#{owner_email}&contact_id=#{id}",
+        'content-type' => 'application/x-www-form-urlencoded'
+      )
+      merge!(response.body)
+
+    rescue Faraday::ParsingError => e
+      if e.message =~ /Owner with this email does not exist/
+        raise AgileCRMWrapper::NotFound.new(response, 'Owner with this email does not exist')
+      else
+        raise e
+      end
+    end
+
     private
 
     def merge_properties(new_properties)

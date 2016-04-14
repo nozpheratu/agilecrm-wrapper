@@ -122,6 +122,25 @@ describe AgileCRMWrapper::Contact do
     end
   end
 
+  describe '#change_owner' do
+    let(:contact) { AgileCRMWrapper::Contact.find(123) }
+
+    context 'given existing user' do
+      it 'updates owner' do
+        contact.change_owner('new_owner@example.com')
+        expect(contact.owner.email).to eq('new_owner@example.com')
+      end
+    end
+
+    context 'given non-existing user' do
+      it 'raises error' do
+        expect{
+          contact.change_owner('idontexist@example.com')
+        }.to raise_error(AgileCRMWrapper::NotFound)
+      end
+    end
+  end
+
   describe '#destroy' do
     let(:contact) { AgileCRMWrapper::Contact.find(123) }
     subject { contact.destroy }
