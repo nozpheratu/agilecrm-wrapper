@@ -100,6 +100,11 @@ contact.get_property("my_custom_field")   #=> "im a custom field!"
 contact.get_property("unkown_attribute")  #=> nil
 ```
 
+###### To change the contact's owner
+```ruby
+contact.change_owner('new_owner@example.com')
+```
+
 ### 2. Working with Notes
 
 ###### To create a new note
