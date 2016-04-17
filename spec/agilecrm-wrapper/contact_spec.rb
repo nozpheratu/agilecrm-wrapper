@@ -38,8 +38,8 @@ describe AgileCRMWrapper::Contact do
   describe '#delete_tags' do
     it 'removes the tags' do
       expect(
-        contact.delete_tags(contact.tags)
-      ).to eq []
+        contact.delete_tags(['sales'])
+      ).to eq ['rspec', 'new']
     end
   end
 
